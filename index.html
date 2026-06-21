@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Konoba Il Pataccone — Skriveni dragulj · Sv. Filip i Jakov</title>
+<meta name="description" content="Intimna dalmatinsko-talijanska konoba u Sv. Filipu i Jakovu. Svježa riba, domaća pašta, savršenih 5.0 iz 10 recenzija. Ekskluzivno, uz svjetlo svijeće. Rezervacija putem upita." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400;1,9..144,500&family=EB+Garamond:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --bg:#161210;
+    --bg-2:#1E1814;
+    --bg-3:#241C17;
+    --gold:#C9A24B;
+    --gold-soft:#D9BC7A;
+    --oxblood:#6E2B26;
+    --oxblood-l:#8E3A33;
+    --cream:#EFE6D6;
+    --cream-dim:#B8AC97;
+    --line:rgba(201,162,75,.22);
+    --font-display:'Fraunces', Georgia, serif;
+    --font-alt:'EB Garamond', Georgia, serif;
+    --font-body:'DM Sans', system-ui, sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--cream);font-family:var(--font-body);font-weight:300;line-height:1.7;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  img{display:block;max-width:100%}
+  a{color:inherit;text-decoration:none}
+  ::selection{background:var(--gold);color:var(--bg)}
+  .wrap{max-width:1280px;margin:0 auto;padding:0 36px}
+  .eyebrow{font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);font-weight:500}
+  h1,h2,h3{font-family:var(--font-display);font-weight:400;line-height:1.04;letter-spacing:-.01em}
+  .italic{font-family:var(--font-alt);font-style:italic}
+
+  /* HEADER */
+  header{position:fixed;top:0;left:0;right:0;z-index:60;display:flex;align-items:center;justify-content:space-between;padding:24px 36px;transition:background .5s,padding .5s,border-color .5s;border-bottom:1px solid transparent}
+  header.scrolled{background:rgba(22,18,16,.86);backdrop-filter:blur(12px);padding:15px 36px;border-color:var(--line)}
+  .logo{font-family:var(--font-display);font-size:22px;font-weight:500;letter-spacing:.02em;color:var(--cream);display:flex;align-items:center;gap:11px}
+  .logo svg{width:24px;height:24px;color:var(--gold)}
+  nav.main{display:flex;gap:36px;align-items:center}
+  nav.main a{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--cream-dim);transition:color .3s}
+  nav.main a:hover{color:var(--gold)}
+  .cta-btn{font-family:var(--font-body);font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;background:transparent;color:var(--gold);padding:12px 24px;border:1px solid var(--gold);border-radius:1px;cursor:pointer;transition:background .35s,color .35s;font-weight:500}
+  .cta-btn:hover{background:var(--gold);color:var(--bg)}
+  .menu-toggle{display:none;background:none;border:none;cursor:pointer;flex-direction:column;gap:5px}
+  .menu-toggle span{width:24px;height:1.4px;background:var(--gold);display:block}
+
+  /* HERO */
+  .hero{position:relative;height:100vh;min-height:660px;display:flex;align-items:flex-end;overflow:hidden}
+  .hero-bg{position:absolute;inset:0;z-index:0;overflow:hidden}
+  .hero-bg img{width:100%;height:100%;object-fit:cover;transform:scale(1.12);filter:brightness(.46) saturate(.85) contrast(1.08)}
+  .hero-bg::after{content:"";position:absolute;inset:0;background:radial-gradient(120% 90% at 50% 30%,transparent 0%,rgba(22,18,16,.4) 60%,rgba(22,18,16,.95) 100%)}
+  .hero-inner{position:relative;z-index:2;padding:0 0 90px;width:100%}
+  .hero .wrap{max-width:1280px}
+  .hero .eyebrow{margin-bottom:24px;display:block;color:var(--gold-soft)}
+  .hero h1{font-size:clamp(52px,10vw,132px);color:var(--cream);line-height:.95;font-weight:400;letter-spacing:-.02em}
+  .hero h1 .w{display:inline-block;overflow:hidden;vertical-align:top}
+  .hero h1 .w span{display:inline-block}
+  .hero .tagline{font-family:var(--font-alt);font-style:italic;font-size:clamp(20px,2.6vw,30px);color:var(--cream-dim);margin-top:30px;max-width:620px;line-height:1.45}
+  .hero-meta{position:absolute;right:36px;bottom:90px;z-index:2;text-align:right;display:flex;flex-direction:column;gap:6px}
+  .hero-meta .num{font-family:var(--font-display);font-size:46px;color:var(--gold);line-height:1}
+  .hero-meta .lbl{font-size:10.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--cream-dim)}
+  .scroll-ind{position:absolute;left:50%;bottom:30px;transform:translateX(-50%);z-index:2;font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:var(--cream-dim);display:flex;flex-direction:column;align-items:center;gap:8px}
+  .scroll-ind .dot{width:5px;height:5px;border-radius:50%;background:var(--gold);animation:fall 1.9s ease-in-out infinite}
+  @keyframes fall{0%{transform:translateY(-6px);opacity:0}40%{opacity:1}100%{transform:translateY(8px);opacity:0}}
+
+  section{position:relative;z-index:2}
+  .pad{padding:130px 0}
+  .reveal{opacity:0;transform:translateY(28px)}
+  .wr-line{display:block;overflow:hidden}
+  .wr-line>span{display:inline-block;transform:translateY(110%)}
+
+  /* MANIFEST */
+  .manifest{max-width:900px;margin:0 auto;text-align:center}
+  .manifest .eyebrow{margin-bottom:30px;display:block}
+  .manifest p{font-family:var(--font-display);font-size:clamp(26px,3.6vw,44px);font-weight:400;line-height:1.4;color:var(--cream)}
+  .manifest p .italic{color:var(--gold-soft)}
+  .manifest .sub{font-family:var(--font-body);font-weight:300;font-size:16.5px;line-height:1.85;color:var(--cream-dim);margin-top:34px;max-width:600px;margin-left:auto;margin-right:auto}
+
+  /* STATS strip */
+  .stats{background:var(--bg-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .stats .wrap{display:flex;justify-content:space-around;flex-wrap:wrap;gap:30px;padding:54px 36px}
+  .stat{text-align:center}
+  .stat .n{font-family:var(--font-display);font-size:clamp(40px,5vw,62px);color:var(--gold);line-height:1}
+  .stat .t{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--cream-dim);margin-top:12px}
+
+  /* MENU */
+  .menu-sec{background:var(--bg)}
+  .sec-head{text-align:center;margin-bottom:70px}
+  .sec-head .eyebrow{margin-bottom:18px;display:block}
+  .sec-head h2{font-size:clamp(36px,5.5vw,70px);color:var(--cream)}
+  .sec-head .note{font-family:var(--font-alt);font-style:italic;color:var(--cream-dim);font-size:20px;margin-top:16px}
+  .menu-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px 80px;max-width:1080px;margin:0 auto}
+  .menu-col h3{font-family:var(--font-display);font-size:24px;color:var(--gold);font-weight:500;margin-bottom:28px;padding-bottom:14px;border-bottom:1px solid var(--line)}
+  .dish{margin-bottom:26px}
+  .dish .dn{font-family:var(--font-display);font-size:21px;font-weight:400;color:var(--cream)}
+  .dish .dd{font-size:14px;color:var(--cream-dim);line-height:1.6;margin-top:4px}
+  .menu-foot{text-align:center;margin-top:64px;font-family:var(--font-alt);font-style:italic;font-size:19px;color:var(--cream-dim)}
+
+  /* STORY */
+  .story{display:grid;grid-template-columns:1fr 1fr;gap:90px;align-items:center}
+  .story-img{position:relative;overflow:hidden}
+  .story-img img{width:100%;height:640px;object-fit:cover;filter:brightness(.78) saturate(.9) contrast(1.06)}
+  .story-img::after{content:"";position:absolute;inset:0;box-shadow:inset 0 0 120px rgba(22,18,16,.6)}
+  .story-txt .eyebrow{margin-bottom:20px;display:block}
+  .story-txt h2{font-size:clamp(34px,4.6vw,58px);margin-bottom:28px;color:var(--cream)}
+  .story-txt p{font-size:16px;line-height:1.9;color:var(--cream-dim);margin-bottom:18px;font-weight:300}
+  .story-txt .sign{font-family:var(--font-alt);font-style:italic;font-size:23px;color:var(--gold);margin-top:10px}
+
+  /* GALLERY */
+  .gal-sec{background:var(--bg-2)}
+  .gallery{display:grid;grid-template-columns:repeat(12,1fr);gap:14px}
+  .gallery figure{position:relative;overflow:hidden}
+  .gallery img{width:100%;height:100%;object-fit:cover;filter:brightness(.6) saturate(.82) contrast(1.1);transition:filter 1s,transform 1.3s cubic-bezier(.2,.7,.2,1)}
+  .gallery figure:hover img{filter:brightness(.85) saturate(.95);transform:scale(1.05)}
+  .gallery figcaption{position:absolute;left:18px;bottom:16px;font-family:var(--font-alt);font-style:italic;font-size:16px;color:var(--cream);opacity:0;transform:translateY(8px);transition:.5s;text-shadow:0 1px 12px rgba(0,0,0,.6)}
+  .gallery figure:hover figcaption{opacity:1;transform:translateY(0)}
+  .a{grid-column:span 6;height:460px}
+  .b{grid-column:span 6;height:460px}
+  .c{grid-column:span 4;height:320px}
+  .d{grid-column:span 4;height:320px}
+  .e{grid-column:span 4;height:320px}
+
+  /* LOCATION */
+  .loc{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:stretch}
+  .loc-info .eyebrow{display:block;margin-bottom:18px}
+  .loc-info h2{font-size:clamp(34px,4.6vw,56px);margin-bottom:32px;color:var(--cream)}
+  .loc-block{margin-bottom:32px}
+  .loc-block .lh{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:9px}
+  .loc-block p{font-size:16px;color:var(--cream-dim);line-height:1.8;font-weight:300}
+  .hours-row{display:flex;justify-content:space-between;max-width:360px;padding:8px 0;border-bottom:1px solid var(--line);font-size:15px;color:var(--cream-dim)}
+  .hours-row span:last-child{color:var(--gold-soft)}
+  .map-box{position:relative;overflow:hidden;min-height:440px;border:1px solid var(--line)}
+  .map-box iframe{width:100%;height:100%;min-height:440px;border:0;filter:invert(.9) hue-rotate(180deg) saturate(.7) brightness(.95)}
+
+  /* ENQUIRY PANEL (slide-in) */
+  .enq-panel{position:fixed;top:0;right:0;width:min(460px,100vw);height:100vh;background:var(--bg-2);border-left:1px solid var(--line);transform:translateX(100%);z-index:100;overflow-y:auto;padding:44px 38px;transition:transform .5s cubic-bezier(.6,0,.2,1)}
+  .enq-panel.open{transform:translateX(0)}
+  .enq-panel .close{position:absolute;top:24px;right:30px;background:none;border:none;color:var(--cream-dim);font-size:26px;cursor:pointer;line-height:1}
+  .enq-panel .eyebrow{display:block;margin-bottom:14px}
+  .enq-panel h3{font-family:var(--font-display);font-size:34px;color:var(--cream);margin-bottom:10px;line-height:1.1}
+  .enq-panel .p-sub{font-family:var(--font-alt);font-style:italic;color:var(--cream-dim);margin-bottom:30px;font-size:17px}
+  form.res{display:grid;gap:16px}
+  form.res label{display:block;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--cream-dim);margin-bottom:7px}
+  form.res input,form.res textarea,form.res select{width:100%;padding:13px 14px;background:var(--bg);border:1px solid var(--line);color:var(--cream);font-family:var(--font-body);font-size:15px;border-radius:1px;transition:border-color .3s}
+  form.res input:focus,form.res textarea:focus,form.res select:focus{outline:none;border-color:var(--gold)}
+  form.res textarea{resize:vertical;min-height:96px}
+  form.res .row2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  form.res button{width:100%;margin-top:6px;padding:15px}
+  .form-note{font-size:12.5px;color:var(--cream-dim);margin-top:18px;font-style:italic;font-family:var(--font-alt)}
+  .overlay{position:fixed;inset:0;background:rgba(10,8,7,.6);backdrop-filter:blur(2px);z-index:99;opacity:0;pointer-events:none;transition:opacity .5s}
+  .overlay.on{opacity:1;pointer-events:all}
+
+  /* FINAL CTA */
+  .final{text-align:center;background:var(--bg-3);position:relative;overflow:hidden}
+  .final .glow{position:absolute;inset:0;background:radial-gradient(60% 80% at 50% 120%,rgba(201,162,75,.14),transparent 70%);pointer-events:none}
+  .final h2{font-size:clamp(40px,6vw,84px);color:var(--cream);margin-bottom:24px}
+  .final .italic{color:var(--gold-soft)}
+  .final p{font-family:var(--font-alt);font-style:italic;font-size:21px;color:var(--cream-dim);max-width:560px;margin:0 auto 40px}
+
+  /* FOOTER */
+  footer{background:var(--bg);border-top:1px solid var(--line);padding:80px 0 36px}
+  .foot-top{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:50px;margin-bottom:56px}
+  .foot-brand .logo{margin-bottom:18px}
+  .foot-brand p{font-family:var(--font-alt);font-style:italic;font-size:19px;color:var(--cream-dim);line-height:1.55;max-width:340px}
+  .foot-col h4{font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:18px;font-family:var(--font-body);font-weight:500}
+  .foot-col a,.foot-col p{display:block;font-size:15px;color:var(--cream-dim);margin-bottom:10px}
+  .foot-col a:hover{color:var(--gold)}
+  .foot-bottom{border-top:1px solid var(--line);padding-top:26px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px;font-size:12.5px;color:var(--cream-dim)}
+
+  @media(max-width:880px){
+    nav.main{display:none}
+    .menu-toggle{display:flex}
+    .menu-grid,.story,.loc,.foot-top{grid-template-columns:1fr;gap:44px}
+    .story-img img{height:440px}
+    .gallery{grid-template-columns:1fr 1fr}
+    .a,.b,.c,.d,.e{grid-column:span 1;height:260px}
+    .hero-meta{position:static;text-align:left;flex-direction:row;gap:14px;align-items:baseline;margin-top:26px}
+    .hero-meta .num{font-size:34px}
+    .pad{padding:88px 0}
+    form.res .row2{grid-template-columns:1fr}
+    .foot-bottom{flex-direction:column}
+    header{padding:18px 22px}
+    .wrap{padding:0 22px}
+    .hero-inner{padding-bottom:64px}
+  }
+  @media(prefers-reduced-motion:reduce){
+    .reveal{opacity:1!important;transform:none!important}
+    .wr-line>span{transform:none!important}
+    .hero-bg img{transform:scale(1.04)!important}
+    .scroll-ind .dot{animation:none}
+    *{scroll-behavior:auto!important}
+  }
+</style>
+</head>
+<body>
+
+<header id="header">
+  <a href="#top" class="logo">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5" stroke-dasharray="1.4 2"/><circle cx="12" cy="12" r="1.6" fill="currentColor" stroke="none"/></svg>
+    Il&nbsp;Pataccone
+  </a>
+  <nav class="main">
+    <a href="#prica">Priča</a>
+    <a href="#menu">Jelovnik</a>
+    <a href="#ambijent">Ambijent</a>
+    <a href="#lokacija">Lokacija</a>
+    <button class="cta-btn" data-open-enq>Upit / Rezervacija</button>
+  </nav>
+  <button class="menu-toggle" data-open-enq aria-label="Upit"><span></span><span></span><span></span></button>
+</header>
+
+<a id="top"></a>
+<section class="hero">
+  <div class="hero-bg"><img src="https://images.unsplash.com/photo-1551632436-cbf8dd35adfa?auto=format&fit=crop&w=2000&q=80" alt="Intimni stol uz svjetlo svijeće u tamnoj konobi" /></div>
+  <div class="hero-inner">
+    <div class="wrap">
+      <span class="eyebrow">Sv. Filip i Jakov · skriveni dragulj</span>
+      <h1 id="heroTitle">Il Pataccone</h1>
+      <p class="tagline">Mala konoba uz more, svjetlo svijeće i ulov koji je jutros još plivao. Dalmacija s talijanskim dodirom — za one koji znaju kamo doći.</p>
+    </div>
+  </div>
+  <div class="hero-meta">
+    <span class="num"><span data-count="5" data-dec="1">0.0</span> ★</span>
+    <span class="lbl">10 recenzija · 100% savršeno</span>
+  </div>
+  <div class="scroll-ind"><span>Uđite</span><span class="dot"></span></div>
+</section>
+
+<!-- MANIFEST -->
+<section class="pad">
+  <div class="wrap manifest reveal">
+    <span class="eyebrow">Manifest</span>
+    <p>Ne tražimo gomilu. Tražimo <span class="italic">pravi stol</span>, pravu ribu i goste koji razumiju da se najbolje stvari ne reklamiraju — <span class="italic">šapću se.</span></p>
+    <p class="sub">Il Pataccone je talijanska riječ s dalmatinskim srcem — stari novčić, drag lupež, nešto rustikalno i razigrano. Mali smo namjerno. Deset gostiju, deset recenzija, deset puta savršeno. Mjesto koje ne nađete slučajno — nego vam ga netko povjeri.</p>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="stats">
+  <div class="wrap">
+    <div class="stat reveal"><div class="n"><span data-count="5" data-dec="1">0.0</span></div><div class="t">Prosječna ocjena</div></div>
+    <div class="stat reveal"><div class="n"><span data-count="10">0</span></div><div class="t">Recenzija</div></div>
+    <div class="stat reveal"><div class="n"><span data-count="100">0</span>%</div><div class="t">Savršeni dojam</div></div>
+    <div class="stat reveal"><div class="n">1</div><div class="t">Skriveni dragulj</div></div>
+  </div>
+</section>
+
+<!-- MENU -->
+<section class="pad menu-sec" id="menu">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Sezonski jelovnik</span>
+      <h2>S mora i ognjišta</h2>
+      <p class="note">Pišemo ga svako jutro — onako kako more odluči.</p>
+    </div>
+    <div class="menu-grid">
+      <div class="menu-col reveal">
+        <h3>Za početak</h3>
+        <div class="dish"><div class="dn">Sirova srdela u maslinovu ulju</div><div class="dd">limun, kapari, divlji komorač s obale</div></div>
+        <div class="dish"><div class="dn">Carpaccio od orade</div><div class="dd">tanko rezana, ekstra djevičansko ulje, sol mora</div></div>
+        <div class="dish"><div class="dn">Pršut iz mišine i domaći sir</div><div class="dd">zrenje na buri, marmelada od smokve</div></div>
+        <div class="dish"><div class="dn">Topla rajčica i kozji sir</div><div class="dd">med, timijan, kruh iz naše peći</div></div>
+      </div>
+      <div class="menu-col reveal">
+        <h3>Pašta i rižot</h3>
+        <div class="dish"><div class="dn">Domaći njoki sa škampima</div><div class="dd">na buzaru, kap bijelog vina, peršin iz vrta</div></div>
+        <div class="dish"><div class="dn">Tagliatelle al ragù di mare</div><div class="dd">ručno razvučeno tijesto, ragu od plodova mora</div></div>
+        <div class="dish"><div class="dn">Crni rižot od sipe</div><div class="dd">njeno crnilo, parmezan tek za naglasak</div></div>
+        <div class="dish"><div class="dn">Fuži s istarskim tartufom</div><div class="dd">naša maslina, ništa suvišno</div></div>
+      </div>
+      <div class="menu-col reveal">
+        <h3>Iz mora</h3>
+        <div class="dish"><div class="dn">Riba s gradela, ulov dana</div><div class="dd">sol, ulje, ruzmarin — onako kako treba</div></div>
+        <div class="dish"><div class="dn">Brodet po starinski</div><div class="dd">škarpina i rakovica, palenta od mlinca</div></div>
+        <div class="dish"><div class="dn">Buzara od školjki</div><div class="dd">dagnje, kapica, češnjak, krušne mrvice</div></div>
+      </div>
+      <div class="menu-col reveal">
+        <h3>Za kraj</h3>
+        <div class="dish"><div class="dn">Rožata bake</div><div class="dd">stari recept, kora naranče, polako kuhan karamel</div></div>
+        <div class="dish"><div class="dn">Tiramisu na naš način</div><div class="dd">domaći mascarpone, kava iz džezve, kap rakije</div></div>
+        <div class="dish"><div class="dn">Smokve u prošeku</div><div class="dd">domaći prošek, prženi badem</div></div>
+      </div>
+    </div>
+    <p class="menu-foot reveal">Bez cijena u izlogu — za sezonske posebnosti i alergije, pitajte nas osobno.</p>
+  </div>
+</section>
+
+<!-- STORY -->
+<section class="pad" id="prica">
+  <div class="wrap story">
+    <div class="story-txt reveal">
+      <span class="eyebrow">Naša priča</span>
+      <h2>Mali stol, beskrajna gostoljubivost</h2>
+      <p>U Sv. Filipu i Jakovu — tihom mjestu na rivijeri kraj Biograda, gdje kamen, marina i more dišu zajedno — otvorili smo vrata male konobe. Talijansko ime, dalmatinsko srce.</p>
+      <p>Il Pataccone: naš dragi lupež, naš stari novčić koji ne kupuje ništa osim večeri koje se pamte. Kuhamo za goste kao za vlastitu obitelj — bez žurbe, s ribom koja stiže s lokalnih barki i tijestom mijesenim istog jutra.</p>
+      <p>Deset gostiju nam je dalo deset savršenih ocjena. Nismo to tražili — darovali su nam. I zato ostajemo mali: jer svaki stol je dočekan kao prvi i jedini.</p>
+      <p class="sign">— Dobrodošli, uz svjetlo svijeće.</p>
+    </div>
+    <div class="story-img reveal" data-parallax><img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1100&q=80" alt="Topli intimni ambijent konobe uz svijeće" /></div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="pad gal-sec" id="ambijent">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Ambijent</span>
+      <h2>Niska svjetlost, visoka toplina</h2>
+      <p class="note">Kamen, svijeća, more i miris maslinova ulja.</p>
+    </div>
+    <div class="gallery">
+      <figure class="a reveal"><img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=1200&q=80" alt="Stol uz svjetlo svijeće" /><figcaption>topla svjetlost · stari kamen</figcaption></figure>
+      <figure class="b reveal"><img src="https://images.unsplash.com/photo-1535007813616-79dc02ba4021?auto=format&fit=crop&w=1000&q=80" alt="Svježa riba" /><figcaption>ulov dana</figcaption></figure>
+      <figure class="c reveal"><img src="https://images.unsplash.com/photo-1473093295043-cdd812d0e601?auto=format&fit=crop&w=800&q=80" alt="Domaća pašta" /><figcaption>tijesto jutros</figcaption></figure>
+      <figure class="d reveal"><img src="https://images.unsplash.com/photo-1528823872057-9c018a7a7553?auto=format&fit=crop&w=800&q=80" alt="Maslinovo ulje i kruh" /><figcaption>maslina s brda</figcaption></figure>
+      <figure class="e reveal"><img src="https://images.unsplash.com/photo-1505253716362-afaea1d3d1af?auto=format&fit=crop&w=800&q=80" alt="Jadranska luka u sumrak" /><figcaption>marina u sumrak</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- LOCATION -->
+<section class="pad" id="lokacija">
+  <div class="wrap loc">
+    <div class="loc-info reveal">
+      <span class="eyebrow">Gdje smo</span>
+      <h2>Sv. Filip i Jakov</h2>
+      <div class="loc-block">
+        <div class="lh">Mjesto</div>
+        <p>Tiho mjesto jadranske rivijere kraj Biograda na Moru. Marina, kamene uličice i more koje miriše na sol i komorač.</p>
+      </div>
+      <div class="loc-block">
+        <div class="lh">Radno vrijeme</div>
+        <div class="hours-row"><span>Pon — Čet</span><span>17:00 — 23:00</span></div>
+        <div class="hours-row"><span>Pet — Sub</span><span>12:00 — 24:00</span></div>
+        <div class="hours-row"><span>Nedjelja</span><span>12:00 — 23:00</span></div>
+        <p style="margin-top:14px;font-family:var(--font-alt);font-style:italic">Mali smo — molimo najavu putem upita.</p>
+      </div>
+      <div class="loc-block">
+        <div class="lh">Kontakt</div>
+        <p><button class="cta-btn" data-open-enq style="margin-top:6px">Pošaljite upit</button></p>
+      </div>
+    </div>
+    <div class="map-box reveal">
+      <iframe src="https://maps.google.com/maps?q=Konoba+Il+Pataccone+Sveti+Filip+i+Jakov&output=embed" loading="lazy" title="Karta — Sv. Filip i Jakov"></iframe>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="pad final">
+  <div class="glow"></div>
+  <div class="wrap reveal">
+    <h2>Stol vas <span class="italic">čeka.</span></h2>
+    <p>Bez objavljenog telefona — svaki upit obrađujemo osobno, jednako pažljivo kao i svako jelo.</p>
+    <button class="cta-btn" data-open-enq style="padding:15px 34px">Pošalji upit za rezervaciju</button>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="foot-brand">
+        <div class="logo">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5" stroke-dasharray="1.4 2"/></svg>
+          Il&nbsp;Pataccone
+        </div>
+        <p>Skriveni dragulj jadranske rivijere. Za one koji znaju kamo doći.</p>
+      </div>
+      <div class="foot-col">
+        <h4>Posjetite</h4>
+        <p>Sv. Filip i Jakov</p>
+        <p>Jadranska rivijera, Hrvatska</p>
+        <a href="#lokacija">Karta →</a>
+      </div>
+      <div class="foot-col">
+        <h4>Kontakt</h4>
+        <a href="#" data-open-enq>Upit / Rezervacija</a>
+        <a href="mailto:info@ilpataccone.hr">info@ilpataccone.hr</a>
+        <p>5.0 ★ · 10 recenzija · 100%</p>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Konoba Il Pataccone · Sv. Filip i Jakov</span>
+      <span>Skriveni dragulj · uz svjetlo svijeće.</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ENQUIRY PANEL -->
+<div class="overlay" id="overlay"></div>
+<aside class="enq-panel" id="enqPanel" aria-hidden="true">
+  <button class="close" id="enqClose" aria-label="Zatvori">×</button>
+  <span class="eyebrow">Rezervacija putem upita</span>
+  <h3>Pridružite se za stol</h3>
+  <p class="p-sub">Javljamo se osobno s potvrdom slobodnog termina.</p>
+  <form class="res" onsubmit="event.preventDefault();var b=this.querySelector('button[type=submit]');b.textContent='Hvala — javljamo se uskoro';b.disabled=true;">
+    <div><label>Ime i prezime</label><input type="text" required placeholder="Vaše ime" /></div>
+    <div><label>E-mail</label><input type="email" required placeholder="vas@email.com" /></div>
+    <div class="row2">
+      <div><label>Datum</label><input type="date" required /></div>
+      <div><label>Gostiju</label><select><option>2</option><option>3</option><option>4</option><option>5—6</option><option>6+</option></select></div>
+    </div>
+    <div><label>Poruka</label><textarea placeholder="Poželjno vrijeme, posebne želje..."></textarea></div>
+    <button type="submit" class="cta-btn">Pošalji upit</button>
+  </form>
+  <p class="form-note">Nemamo objavljen telefon — svaki upit obrađujemo osobno putem e-maila.</p>
+</aside>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+<script>
+(function(){
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // header state
+  var header=document.getElementById('header');
+  function onScroll(){ if(window.scrollY>60) header.classList.add('scrolled'); else header.classList.remove('scrolled'); }
+  onScroll(); window.addEventListener('scroll',onScroll,{passive:true});
+
+  // enquiry panel
+  var panel=document.getElementById('enqPanel'), ov=document.getElementById('overlay');
+  function openP(){panel.classList.add('open');ov.classList.add('on');panel.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';}
+  function closeP(){panel.classList.remove('open');ov.classList.remove('on');panel.setAttribute('aria-hidden','true');document.body.style.overflow='';}
+  document.querySelectorAll('[data-open-enq]').forEach(function(b){b.addEventListener('click',function(e){e.preventDefault();openP();});});
+  document.getElementById('enqClose').addEventListener('click',closeP);
+  ov.addEventListener('click',closeP);
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')closeP();});
+
+  // word-split hero (always, lightweight)
+  var ht=document.getElementById('heroTitle');
+  if(ht){
+    var words=ht.textContent.split(' ');
+    ht.innerHTML=words.map(function(w){return '<span class="w"><span>'+w+'</span></span>';}).join(' ');
+  }
+
+  if(reduce) return;
+
+  var lenis=new Lenis({duration:1.2, easing:function(t){return Math.min(1,1.001-Math.pow(2,-10*t));}, smoothWheel:true});
+  function raf(t){lenis.raf(t);requestAnimationFrame(raf);} requestAnimationFrame(raf);
+
+  if(window.gsap && window.ScrollTrigger){
+    gsap.registerPlugin(ScrollTrigger);
+    lenis.on('scroll', ScrollTrigger.update);
+
+    // hero breathing zoom
+    gsap.to('.hero-bg img',{scale:1.04,duration:3.4,ease:'power2.out'});
+
+    // hero word reveal
+    gsap.to('#heroTitle .w span',{y:0,duration:1.1,stagger:.12,ease:'power4.out',delay:.25});
+
+    // section reveals
+    gsap.utils.toArray('.reveal').forEach(function(el){
+      gsap.to(el,{opacity:1,y:0,duration:1.0,ease:'power3.out',
+        scrollTrigger:{trigger:el,start:'top 88%'}});
+    });
+
+    // gentle parallax
+    gsap.utils.toArray('[data-parallax] img').forEach(function(img){
+      gsap.to(img,{yPercent:12,ease:'none',scrollTrigger:{trigger:img,start:'top bottom',end:'bottom top',scrub:1}});
+    });
+
+    // count-up
+    gsap.utils.toArray('[data-count]').forEach(function(el){
+      var end=parseFloat(el.getAttribute('data-count'));
+      var dec=el.getAttribute('data-dec')?parseInt(el.getAttribute('data-dec')):0;
+      var obj={v:0};
+      gsap.to(obj,{v:end,duration:1.6,ease:'power2.out',
+        scrollTrigger:{trigger:el,start:'top 92%',once:true},
+        onUpdate:function(){el.textContent=obj.v.toFixed(dec);}});
+    });
+  }
+})();
+</script>
+</body>
+</html>
